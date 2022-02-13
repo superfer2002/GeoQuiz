@@ -1,6 +1,15 @@
 <resources>
     <string name="app_name">GeoQuiz</string>
-    <string name="question_text">Canberra is the capital of Australia.</string>
+
+    <string name="question_text1">Canberra is the capital of Australia.</string>
+    <string name="question_text2">Paris is the capital of France.</string>
+    <string name="question_text3">Berna is the capital of Sweden.</string>
+    <string name="question_text4">Antananarivo is the capital of Madagascar.</string>
+    <string name="question_text5">Berlin is the capital of Vienna.</string>
+
+    <string name="finish_game">Game finished!</string>
+
+
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="correct_toast">Correct!</string>
