@@ -78,12 +78,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void nextQuestion () {
         TextView textview = findViewById(R.id.questionToShow);
-        textview.setText(assignQuestion(questionNumber));
-        setButtons(assignAnswer(questionNumber));
-        /*if (questionNumber > 4) {
+
+        if (questionNumber < 5) {
+            textview.setText(assignQuestion(questionNumber));
+            setButtons(assignAnswer(questionNumber));
+            questionNumber++;
+        } else {
             textview.setText(R.string.finish_game);
-        }*/
-        questionNumber++;
+            mTrueButton.setVisibility(View.GONE);
+            mFalseButton.setVisibility(View.GONE);
+        }
     }
 
     private void setButtons(boolean answer) {
@@ -127,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_main);
         nextQuestion();
