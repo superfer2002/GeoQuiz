@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
-    private boolean questionAnswered = false;
+    private int questionNumber = 0;
 
     private boolean assignAnswer (int questionNumber) {
 
@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
         }
-
         return answer;
-
     }
 
     private int assignQuestion (int questionNumber) {
@@ -78,8 +76,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setButtons(boolean answer) {
+    private void nextQuestion () {
+        TextView textview = findViewById(R.id.questionToShow);
+        textview.setText(assignQuestion(questionNumber));
+        setButtons(assignAnswer(questionNumber));
+        /*if (questionNumber > 4) {
+            textview.setText(R.string.finish_game);
+        }*/
+        questionNumber++;
+    }
 
+    private void setButtons(boolean answer) {
         Toast correctToast = Toast.makeText(MainActivity.this,
                 R.string.correct_toast,
                 Toast.LENGTH_SHORT);
@@ -94,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                questionAnswered = true;
+                nextQuestion();
                 if (answer) {
                     correctToast.show();
                 } else {
@@ -107,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                questionAnswered = true;
+                nextQuestion();
                 if (answer) {
                     incorrectToast.show();
                 } else {
@@ -121,18 +128,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.activity_main);
-
-        TextView textview = (TextView) findViewById(R.id.questionToShow);
-
-        for (int i = 0; i < 5; i++) {
-
-            textview.setText(assignQuestion(i));
-            setButtons(assignAnswer(i));
-
-        }
-
-        textview.setText(R.string.finish_game);
+        nextQuestion();
 
     }
 }
