@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mTrueButton;
     private Button mFalseButton;
     private int questionNumber = 0;
+    private int correctAnswers = 0;
 
     private boolean assignAnswer (int questionNumber) {
 
@@ -83,10 +84,17 @@ public class MainActivity extends AppCompatActivity {
             textview.setText(assignQuestion(questionNumber));
             setButtons(assignAnswer(questionNumber));
             questionNumber++;
+
         } else {
-            textview.setText(R.string.finish_game);
+
             mTrueButton.setVisibility(View.GONE);
             mFalseButton.setVisibility(View.GONE);
+
+            if (correctAnswers > 2) {
+                textview.setText(R.string.finish_gameW);
+            } else {
+                textview.setText(R.string.finish_gameL);
+            }
         }
     }
 
@@ -108,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
                 nextQuestion();
                 if (answer) {
                     correctToast.show();
+                    correctAnswers++;
                 } else {
                     incorrectToast.show();
                 }
@@ -123,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     incorrectToast.show();
                 } else {
                     correctToast.show();
+                    correctAnswers++;
                 }
             }
         });

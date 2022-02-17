@@ -7,7 +7,8 @@
     <string name="question_text4">Antananarivo is the capital of Madagascar.</string>
     <string name="question_text5">Berlin is the capital of Vienna.</string>
 
-    <string name="finish_game">Game finished!</string>
+    <string name="finish_gameW">Game finished! You won! :)</string>
+    <string name="finish_gameL">Game finished! You lost! :(</string>
 
     <string name="true_button">True</string>
     <string name="false_button">False</string>
