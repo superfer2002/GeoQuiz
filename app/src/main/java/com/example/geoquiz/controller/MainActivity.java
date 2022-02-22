@@ -9,6 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.geoquiz.R;
+import com.example.geoquiz.model.Question;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,75 +19,25 @@ public class MainActivity extends AppCompatActivity {
     private Button mFalseButton;
     private int questionNumber = 0;
     private int correctAnswers = 0;
+    private ArrayList<Question> questionArrayList = new ArrayList<>();
 
-    private boolean assignAnswer (int questionNumber) {
+    private void setQuestions () {
 
-        boolean answer = true;
-
-        switch (questionNumber) {
-
-            case 0:
-                answer = true;
-                break;
-
-            case 1:
-                answer = true;
-                break;
-
-            case 2:
-                answer = false;
-                break;
-
-            case 3:
-                answer = true;
-                break;
-
-            case 4:
-                answer = false;
-                break;
-
-        }
-        return answer;
-    }
-
-    private int assignQuestion (int questionNumber) {
-
-        int question = 0;
-
-        switch (questionNumber) {
-
-            case 0:
-                question = R.string.question_text1;
-                break;
-
-            case 1:
-                question = R.string.question_text2;
-                break;
-
-            case 2:
-                question = R.string.question_text3;
-                break;
-
-            case 3:
-                question = R.string.question_text4;
-                break;
-
-            case 4:
-                question = R.string.question_text5;
-                break;
-            
-        }
-
-        return question;
+        questionArrayList.add(new Question(R.string.question_text1, true));
+        questionArrayList.add(new Question(R.string.question_text2, true));
+        questionArrayList.add(new Question(R.string.question_text3, false));
+        questionArrayList.add(new Question(R.string.question_text4, true));
+        questionArrayList.add(new Question(R.string.question_text5, false));
 
     }
 
     private void nextQuestion () {
+
         TextView textview = findViewById(R.id.questionToShow);
 
         if (questionNumber < 5) {
-            textview.setText(assignQuestion(questionNumber));
-            setButtons(assignAnswer(questionNumber));
+            textview.setText(questionArrayList.get(questionNumber).getQuestionId());
+            setButtons(questionArrayList.get(questionNumber).isAnswer());
             questionNumber++;
 
         } else {
@@ -101,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setButtons(boolean answer) {
+
         Toast correctToast = Toast.makeText(MainActivity.this,
                 R.string.correct_toast,
                 Toast.LENGTH_SHORT);
@@ -144,8 +98,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setQuestions();
         setContentView(R.layout.activity_main);
-        nextQuestion();
 
     }
 }
