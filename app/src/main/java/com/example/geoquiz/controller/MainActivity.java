@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button mTrueButton;
     private Button mFalseButton;
+    private Button nextQuestion;
+    private Button previousQuestion;
     private int questionNumber = 0;
     private int correctAnswers = 0;
     private ArrayList<Question> questionArrayList = new ArrayList<>();
@@ -31,6 +33,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void goPreviousQuestion () {
+
+        TextView textview = findViewById(R.id.questionToShow);
+
+        if (questionNumber > 0) {
+            textview.setText(questionArrayList.get(questionNumber).getQuestionId());
+            setButtons(questionArrayList.get(questionNumber).isAnswer());
+            questionNumber--;
+
+        } else {
+
+            previousQuestion.setVisibility(View.GONE);
+
+        }
+    }
     private void nextQuestion () {
 
         TextView textview = findViewById(R.id.questionToShow);
@@ -39,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
             textview.setText(questionArrayList.get(questionNumber).getQuestionId());
             setButtons(questionArrayList.get(questionNumber).isAnswer());
             questionNumber++;
+
+            if (questionNumber == 4) {
+                nextQuestion.setVisibility(View.GONE);
+            }
 
         } else {
 
@@ -69,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nextQuestion();
                 if (answer) {
                     correctToast.show();
                     correctAnswers++;
@@ -83,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                nextQuestion();
                 if (answer) {
                     incorrectToast.show();
                 } else {
@@ -94,12 +113,34 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void moveQuestion () {
+
+        nextQuestion = (Button) findViewById(R.id.next_question);
+        nextQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nextQuestion();
+            }
+        });
+
+        previousQuestion = (Button) findViewById(R.id.previous_question);
+        previousQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goPreviousQuestion();
+            }
+        });
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setQuestions();
         setContentView(R.layout.activity_main);
+        nextQuestion();
+        moveQuestion();
 
     }
 }

@@ -29,4 +29,27 @@
             android:text="@string/false_button" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/previous_question"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="6dp"
+            android:drawableEnd="@drawable/arrow_left"/>
+
+        <Button
+            android:id="@+id/next_question"
+            android:backgroundTint="@android:color/"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="6dp"
+            android:drawableEnd="@drawable/arrow_right"/>
+    </LinearLayout>
+
 </LinearLayout>
