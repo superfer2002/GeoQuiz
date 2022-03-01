@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         if (questionNumber > 0) {
             textview.setText(questionArrayList.get(questionNumber).getQuestionId());
             setButtons(questionArrayList.get(questionNumber).isAnswer());
+            nextQuestion.setVisibility(View.VISIBLE);
             questionNumber--;
 
         } else {
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
     private void nextQuestion () {
 
         TextView textview = findViewById(R.id.questionToShow);
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         if (questionNumber < 5) {
             textview.setText(questionArrayList.get(questionNumber).getQuestionId());
             setButtons(questionArrayList.get(questionNumber).isAnswer());
+            previousQuestion.setVisibility(View.VISIBLE);
             questionNumber++;
 
             if (questionNumber == 4) {
