@@ -44,7 +44,6 @@
 
         <Button
             android:id="@+id/next_question"
-            android:backgroundTint="@android:color/"
             android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
