@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
             textview.setText(questionArrayList.get(questionNumber).getQuestionId());
             setButtons(questionArrayList.get(questionNumber).isAnswer());
 
-            if (questionNumber == 1) {
-                previousQuestion.setVisibility(View.VISIBLE);
+            if (questionNumber == 3) {
+                nextQuestion.setVisibility(View.VISIBLE);
             }
 
             questionNumber--;
@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 nextQuestion.setVisibility(View.GONE);
             }
 
-            if (questionNumber == 3) {
-                nextQuestion.setVisibility(View.VISIBLE);
+            if (questionNumber == 1) {
+                previousQuestion.setVisibility(View.VISIBLE);
             }
 
             questionNumber++;
