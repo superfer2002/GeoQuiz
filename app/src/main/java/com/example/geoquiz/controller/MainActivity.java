@@ -146,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        previousQuestion.setVisibility(View.GONE);
+
     }
 
     @Override
