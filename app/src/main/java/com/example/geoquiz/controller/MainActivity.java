@@ -38,17 +38,20 @@ public class MainActivity extends AppCompatActivity {
         TextView textview = findViewById(R.id.questionToShow);
 
         if (questionNumber > 0) {
+
             textview.setText(questionArrayList.get(questionNumber).getQuestionId());
             setButtons(questionArrayList.get(questionNumber).isAnswer());
 
             questionNumber--;
 
             if (questionNumber == 1) {
-                nextQuestion.setVisibility(View.VISIBLE);
+                previousQuestion.setVisibility(View.VISIBLE);
             }
 
         } else {
 
+            textview.setText(questionArrayList.get(questionNumber).getQuestionId());
+            setButtons(questionArrayList.get(questionNumber).isAnswer());
             previousQuestion.setVisibility(View.GONE);
 
         }
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (questionNumber == 3) {
-                previousQuestion.setVisibility(View.VISIBLE);
+                nextQuestion.setVisibility(View.VISIBLE);
             }
 
         } else {
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
         setQuestions();
         setContentView(R.layout.activity_main);
+        previousQuestion.setVisibility(View.GONE);
         nextQuestion();
         moveQuestion();
 
